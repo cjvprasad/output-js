@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>JS Output Questions Practice</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+        margin: 0;
+        padding: 20px;
+    }
+    h1 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .section {
+        margin-bottom: 40px;
+    }
+    .question-card {
+        background: white;
+        padding: 15px;
+        margin-bottom: 12px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    pre {
+        background: #272822;
+        color: #f8f8f2;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto;
+    }
+    button {
+        padding: 6px 12px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 8px;
+    }
+    button:hover {
+        background: #0056b3;
+    }
+    .answer {
+        margin-top: 10px;
+        padding: 10px;
+        background: #e8ffe8;
+        border-left: 4px solid green;
+        border-radius: 5px;
+        display: none;
+    }
+</style>
+</head>
+<body>
+
+<h1>JavaScript Output Interview Questions (75)</h1>
+
+<div id="container"></div>
+
+<script>
+/* ------------------------------------------
+   1️⃣ EASY QUESTIONS (25)
+-------------------------------------------*/
+const easy = [
+{ q:`console.log([] == []);`, a:`false (different references)` },
+{ q:`console.log([] == ![]);`, a:`true` },
+{ q:`console.log(null == undefined);`, a:`true` },
+{ q:`console.log(null === undefined);`, a:`false` },
+{ q:`console.log("5" - 2);`, a:`3` },
+{ q:`console.log("5" + 2);`, a:`"52"` },
+{ q:`console.log(true + true);`, a:`2` },
+{ q:`console.log(false + null);`, a:`0` },
+{ q:`console.log([1] + [1]);`, a:`"11"` },
+{ q:`console.log({} + {});`, a:`"[object Object][object Object]"` },
+{ q:`console.log([] + {});`, a:`"[object Object]"` },
+{ q:`console.log({} + []);`, a:`"[object Object]"` },
+{ q:`console.log(typeof NaN);`, a:`"number"` },
+{ q:`console.log(1 < 2 < 3);`, a:`true` },
+{ q:`console.log(3 > 2 > 1);`, a:`false` },
+{ q:`console.log("10" > "2");`, a:`false` },
+{ q:`console.log([] == 0);`, a:`true` },
+{ q:`console.log([1] == 1);`, a:`true` },
+{ q:`console.log([1,2] == "1,2");`, a:`true` },
+{ q:`console.log(" " == 0);`, a:`true` },
+{ q:`console.log("" == 0);`, a:`true` },
+{ q:`console.log("" === 0);`, a:`false` },
+{ q:`console.log(undefined == 0);`, a:`false` },
+{ q:`console.log(null + 1);`, a:`1` },
+{ q:`console.log(undefined + 1);`, a:`NaN` }
+];
+
+/* ------------------------------------------
+   2️⃣ MEDIUM QUESTIONS (25)
+-------------------------------------------*/
+const medium = [
+{ q:`console.log([, , ,].length);`, a:`3` },
+{ q:`console.log([1,2,3].map(parseInt));`, a:`[1, NaN, NaN]` },
+{ q:`console.log(typeof typeof 1);`, a:`"string"` },
+{ q:`console.log(+"10" + +"10");`, a:`20` },
+{ q:`console.log("" - 1 + 0);`, a:`-1` },
+{ q:`console.log([] == ![]);`, a:`true` },
+{ q:`console.log(({}).toString());`, a:`"[object Object]"` },
+{ q:`function a(){}; console.log(a.prototype);`, a:`{constructor: a}` },
+{ q:`var a=10;(function(){console.log(a);var a=5;})();`, a:`undefined` },
+{ q:`function foo(){ return \n {x:1}; } console.log(foo());`, a:`undefined` },
+{ q:`console.log([1,2] + [3,4]);`, a:`"1,23,4"` },
+{ q:`console.log("5" - "2" + "1");`, a:`"31"` },
+{ q:`console.log("5" + "2" - "1");`, a:`51` },
+{ q:`console.log(false == []);`, a:`true` },
+{ q:`console.log("0" == false);`, a:`true` },
+{ q:`console.log({} == "[object Object]");`, a:`false` },
+{ q:`let a={x:1}; let b=a; a={x:2}; console.log(b.x);`, a:`1` },
+{ q:`console.log([] == "");`, a:`true` },
+{ q:`console.log([0] == 0);`, a:`true` },
+{ q:`console.log([] == false);`, a:`true` },
+{ q:`console.log([null] == "");`, a:`true` },
+{ q:`console.log([undefined] == "");`, a:`true` },
+{ q:`console.log([null,undefined].toString());`, a:`","` },
+{ q:`console.log([1,2,3] == "1,2,4");`, a:`false` },
+{ q:`console.log(0 == "0");`, a:`true` }
+];
+
+/* ------------------------------------------
+   3️⃣ HARD QUESTIONS (25)
+-------------------------------------------*/
+const hard = [
+{ q:`console.log((function(){ return typeof arguments; })());`, a:`"object"` },
+{ q:`var a=1;(function(){console.log(a);a=2;console.log(a);})();console.log(a);`,
+  a:`1,2,2` },
+{ q:`let x=(1,2,3); console.log(x);`, a:`3` },
+{ q:`console.log([1<2<3, 3>2>1]);`, a:`[true, false]` },
+{ q:`console.log({} + [] + {});`, a:`"[object Object][object Object]"` },
+{ q:`console.log([] + [] + []);`, a:`""` },
+{ q:`console.log([] - []);`, a:`0` },
+{ q:`console.log({} - {});`, a:`NaN` },
+{ q:`console.log((function(){return arguments==arguments;})());`, a:`true` },
+{ q:`console.log(!!"false" == !!"true");`, a:`true` },
+{ q:`var obj={a:10, fn:()=>this.a}; console.log(obj.fn());`, a:`undefined` },
+{ q:`let o={a:10, fn(){ return this.a }}; let x2=o.fn; console.log(x2());`,
+  a:`undefined` },
+{ q:`console.log(Promise.resolve(5).then(()=>10));`, a:`Promise` },
+{ q:`(async()=>5)().then(console.log);`, a:`5` },
+{ q:`console.log(typeof NaN==="number");`, a:`true` },
+{ q:`console.log([1,2,3].reduce((a,b)=>a+b));`, a:`6` },
+{ q:`setTimeout(()=>console.log("A"),0); Promise.resolve().then(()=>console.log("B")); console.log("C");`,
+  a:`C, B, A` },
+{ q:`async function f(){return 10;} console.log(f());`, a:`Promise` },
+{ q:`console.log([] == ![]);`, a:`true` },
+{ q:`console.log({} == {});`, a:`false` },
+{ q:`console.log(function(){} == function(){});`, a:`false` },
+{ q:`console.log(+[]);`, a:`0` },
+{ q:`console.log({} + 1);`, a:`"[object Object]1"` },
+{ q:`console.log((()=>arguments)(1,2,3));`, a:`Arguments object` },
+{ q:`console.log((function(){ return this; }).call(5));`, a:`Number object` }
+];
+
+/* ------------------------------------------
+   RENDER FUNCTION
+-------------------------------------------*/
+function renderSection(title, arr) {
+    const section = document.createElement("div");
+    section.className = "section";
+    section.innerHTML = `<h2>${title}</h2>`;
+
+    arr.forEach((item, index) => {
+        const card = document.createElement("div");
+        card.className = "question-card";
+
+        card.innerHTML = `
+            <strong>Q${index + 1}:</strong>
+            <pre>${item.q}</pre>
+            <button onclick="toggleAnswer(this)">Show Answer</button>
+            <div class="answer">${item.a}</div>
+        `;
+
+        section.appendChild(card);
+    });
+
+    document.getElementById("container").appendChild(section);
+}
+
+function toggleAnswer(btn) {
+    const ans = btn.nextElementSibling;
+    const show = ans.style.display === "none" || ans.style.display === "";
+    ans.style.display = show ? "block" : "none";
+    btn.textContent = show ? "Hide Answer" : "Show Answer";
+}
+
+/* Render all sections */
+renderSection("Easy (25 Questions)", easy);
+renderSection("Medium (25 Questions)", medium);
+renderSection("Hard (25 Questions)", hard);
+
+</script>
+</body>
+</html>
